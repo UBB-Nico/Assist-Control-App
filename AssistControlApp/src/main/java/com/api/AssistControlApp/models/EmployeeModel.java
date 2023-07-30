@@ -56,8 +56,8 @@ public class EmployeeModel {
 		return position;
 	}
 
-	public void setPosition(String rol) {
-		this.position = rol;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getContract() {

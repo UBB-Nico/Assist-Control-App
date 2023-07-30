@@ -21,12 +21,12 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@GetMapping("/getAll")
-	public ArrayList<EmployeeModel> getEmployees(){
+	@GetMapping("/getall")
+	public ArrayList<EmployeeModel> getAllEmployees(){
 		return this.employeeService.getEmployees();
 	}
 
-	@PostMapping("/saveEmployee")
+	@PostMapping("/saveemployee")
 	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employee) {
 		return this.employeeService.saveEmployee(employee);
 	}
@@ -45,9 +45,9 @@ public class EmployeeController {
 	public String deleteEmployeeById(@PathVariable Long id){
 		boolean response =  this.employeeService.deleteById(id);
 		if(response) {
-			return "Employee with id: " + id + " was succesfully deleted";
+			return ("Employee with id: " + id + " was succesfully deleted");
 		}else {
-			return "Cannot delete employee with id: " + id;
+			return ("Cannot delete employee with id: " + id);
 		}
 	}
 }
