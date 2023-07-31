@@ -3,6 +3,7 @@ package com.api.AssistControlApp.controllers;
 import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +17,18 @@ import com.api.AssistControlApp.services.EmployeeService;
 
 @RestController
 @RequestMapping("/employee")
+@CrossOrigin("*")
 public class EmployeeController {
 	
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@GetMapping("/getall")
+	@GetMapping("/all")
 	public ArrayList<EmployeeModel> getAllEmployees(){
 		return this.employeeService.getEmployees();
 	}
 
-	@PostMapping("/saveemployee")
+	@PostMapping("/save")
 	public EmployeeModel saveEmployee(@RequestBody EmployeeModel employee) {
 		return this.employeeService.saveEmployee(employee);
 	}
@@ -36,11 +38,13 @@ public class EmployeeController {
 		return this.employeeService.getById(id);
 	}
 
+	//Podria usar responseEntity pero no recuerdo la implementacion
 	@PutMapping(path = "/{id}")
 	public EmployeeModel updateEmployeeById(@RequestBody EmployeeModel request, @PathVariable Long id) {
 		return this.employeeService.updateById(request, id);
 	}
 	
+	//Podria usar responseEntity pero no recuerdo la implementacion
 	@DeleteMapping(path = "/{id}")
 	public String deleteEmployeeById(@PathVariable Long id){
 		boolean response =  this.employeeService.deleteById(id);
