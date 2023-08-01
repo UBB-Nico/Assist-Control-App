@@ -17,7 +17,7 @@ import com.api.AssistControlApp.services.EmployeeService;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
 	
 	@Autowired
@@ -38,20 +38,17 @@ public class EmployeeController {
 		return this.employeeService.getById(id);
 	}
 
-	//Podria usar responseEntity pero no recuerdo la implementacion
 	@PutMapping(path = "/{id}")
 	public EmployeeModel updateEmployeeById(@RequestBody EmployeeModel request, @PathVariable Long id) {
 		return this.employeeService.updateById(request, id);
 	}
 	
 	//Podria usar responseEntity pero no recuerdo la implementacion
-	@DeleteMapping(path = "/{id}")
+	
+	@DeleteMapping(path = "/delete/{id}")
 	public String deleteEmployeeById(@PathVariable Long id){
-		boolean response =  this.employeeService.deleteById(id);
-		if(response) {
-			return ("Employee with id: " + id + " was succesfully deleted");
-		}else {
-			return ("Cannot delete employee with id: " + id);
-		}
+		this.employeeService.deleteEmpById(id);
+		return "Deleted";
+
 	}
 }

@@ -36,12 +36,11 @@ public class EmployeeService {
 		return employee;
 	}
 	
-	public Boolean deleteById(Long id){
+	public void deleteEmpById(Long id){
 		try {
 			employeeRepo.deleteById(id);
-			return true;
 		}catch (Exception e) {
-			return false;
+
 		}
 		
 	}
